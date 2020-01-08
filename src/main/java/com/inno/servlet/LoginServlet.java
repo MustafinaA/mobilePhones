@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -36,9 +35,9 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         User findUser = new User(login, password);
-        Optional user= userDao.get(findUser);
+        User user= (User) userDao.get(findUser);
 
-        if (!user.isPresent()) {
+        if (user==null) {
             String errorMessage = "Invalid login or Password";
             req.setAttribute("errorMessage", errorMessage);
             req.setAttribute("PageTitle", "Login");

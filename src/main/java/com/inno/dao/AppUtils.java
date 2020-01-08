@@ -5,7 +5,6 @@ import com.inno.pojo.User;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class AppUtils {
     private static int REDIRECT_ID = 0;
@@ -14,7 +13,7 @@ public class AppUtils {
     private static final Map<String, Integer> uri_id_map = new HashMap<String, Integer>();
 
     // Сохранить информацию пользователя в Session.
-    public static void storeLoginedUser(HttpSession session, Optional loginedUser) {
+    public static void storeLoginedUser(HttpSession session, User loginedUser) {
         // На JSP можно получить доступ через ${loginedUser}
         session.setAttribute("loginedUser", loginedUser);
         System.out.println(loginedUser.toString());

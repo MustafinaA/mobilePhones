@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet("/showmobile")
 public class ShowMobileServlet extends HttpServlet {
@@ -29,8 +28,8 @@ public class ShowMobileServlet extends HttpServlet {
             throw new ServletException("Missing parameter id");
         }
         Mobile mobile = new Mobile(Integer.valueOf(mobileId));
-        Optional mobileShow = mobileDao.get(mobile);
-        if (!mobileShow.isPresent()) {
+        Mobile mobileShow = (Mobile) mobileDao.get(mobile);
+        if (mobileShow==null) {
             resp.setStatus(404);
             req.getRequestDispatcher("/notfound.jsp").forward(req, resp);
             return;

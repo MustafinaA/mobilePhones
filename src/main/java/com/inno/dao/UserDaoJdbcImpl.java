@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @EJB
 public class UserDaoJdbcImpl implements DataDao<User> {
@@ -57,25 +56,25 @@ public class UserDaoJdbcImpl implements DataDao<User> {
     }
 
     @Override
-    public Optional<User> get(User user) {
+    public User get(User user) {
         try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_FROM_USER)) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return Optional.ofNullable(new User(
+                    return new User(
                             resultSet.getInt(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
                             resultSet.getString(4),
-                            resultSet.getString(5)));
+                            resultSet.getString(5));
                 }
             }
         } catch (SQLException e) {
             LOGGER.error("Some thing wrong in getUserByLoginPassword method", e);
         }
-        return Optional.empty();
+        return null;
     }
 
     @Override

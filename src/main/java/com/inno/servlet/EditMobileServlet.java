@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 @WebServlet("/editmobile")
 public class EditMobileServlet extends HttpServlet {
@@ -26,7 +25,7 @@ public class EditMobileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Mobile mobile = new Mobile(id);
-        Optional editingMobile = mobileDao.get(mobile);
+        Mobile editingMobile = (Mobile) mobileDao.get(mobile);
         req.setAttribute("PageTitle", "Edit Mobile");
         req.setAttribute("PageBody", "form.jsp");
         req.setAttribute("editingMobile", editingMobile);
