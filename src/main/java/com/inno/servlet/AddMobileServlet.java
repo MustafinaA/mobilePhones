@@ -1,6 +1,6 @@
 package com.inno.servlet;
 
-import com.inno.dao.MobileDao;
+import com.inno.dao.DataDao;
 import com.inno.pojo.Mobile;
 
 import javax.servlet.ServletException;
@@ -14,11 +14,11 @@ import java.io.PrintWriter;
 @WebServlet("/addmobile")
 public class AddMobileServlet extends HttpServlet {
 
-    private MobileDao mobileDao;
+    private DataDao mobileDao;
 
     @Override
     public void init() throws ServletException {
-        mobileDao = (MobileDao) getServletContext().getAttribute("dao");
+        mobileDao = (DataDao) getServletContext().getAttribute("daoM");
         super.init();
     }
 
@@ -40,7 +40,7 @@ public class AddMobileServlet extends HttpServlet {
         String price = req.getParameter("price");
         String manufacturer = req.getParameter("manufacturer");
         Mobile mobile = new Mobile(null, model, Integer.valueOf(price), manufacturer);
-        boolean status = mobileDao.addMobile(mobile);
+        boolean status = mobileDao.add(mobile);
         if(status){
             out.print("<p>Mobile saved successfully!</p>");
             resp.sendRedirect(req.getContextPath() + "/allmobiles");

@@ -1,8 +1,12 @@
 <Context antiJARLocking="true" >
+    <!--antiJARLocking if true загрузчик классов Tomcat предпримет дополнительные меры,
+     чтобы избежать блокировки файлов JAR, когда доступ к ресурсам внутри Jar осуществляется через URL-адреса.-->
+
     <Resource name="BeanManager"
               auth="Container"
               type="javax.enterprise.inject.spi.BeanManager"
               factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+
     <Resource name="jdbc/mobile" auth="Container" type="javax.sql.DataSource"
               username="postgres"
               password="qwerty"
@@ -11,4 +15,5 @@
               maxTotal="60"
               maxIdle="20"
               validationQuery="select 1" />
+
 </Context>

@@ -29,7 +29,6 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
 
   @Override
   public Connection getConnection(){
-//
     Connection conn = null;
     try {
       Context initContext = new InitialContext();
@@ -40,19 +39,6 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
       LOGGER.error("Some thing wrong in getConnection method", e);
     }
     return conn;
-//
-//    Connection connection = null;
-//    try {
-//      Class.forName("org.postgresql.Driver");
-//      connection = DriverManager.getConnection(
-//          /*"jdbc:postgresql://host.docker.internal:5432/mobile",*/
-//          "jdbc:postgresql://localhost:5432/mobile",
-//          "postgres",
-//          "qwerty");
-//    } catch (ClassNotFoundException | SQLException e) {
-//      LOGGER.error("Some thing wrong in getConnection method", e);
-//    }
-//    return connection;
   }
 
   @Override public int get15() {

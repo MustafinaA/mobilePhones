@@ -1,6 +1,6 @@
 package com.inno.servlet;
 
-import com.inno.dao.MobileDao;
+import com.inno.dao.DataDao;
 import com.inno.pojo.Mobile;
 
 import javax.servlet.ServletException;
@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/showmobile")
 public class ShowMobileServlet extends HttpServlet {
 
-    private MobileDao mobileDao;
+    private DataDao mobileDao;
 
     @Override
     public void init() throws ServletException {
-        mobileDao = (MobileDao) getServletContext().getAttribute("dao");
+        mobileDao = (DataDao) getServletContext().getAttribute("daoM");
         super.init();
     }
 
@@ -27,13 +28,14 @@ public class ShowMobileServlet extends HttpServlet {
         if (mobileId == null) {
             throw new ServletException("Missing parameter id");
         }
-        Mobile mobile = mobileDao.getMobileById(Integer.valueOf(mobileId));
-        if (mobile == null) {
+        Mobile mobile = new Mobile(Integer.valueOf(mobileId));
+        Optional mobileShow = mobileDao.get(mobile);
+        if (!mobileShow.isPresent()) {
             resp.setStatus(404);
             req.getRequestDispatcher("/notfound.jsp").forward(req, resp);
             return;
         }
-        req.setAttribute("mobile", mobile);
+        req.setAttribute("mobile", mobileShow);
         req.getRequestDispatcher("/showmobile.jsp").forward(req, resp);
     }
 }

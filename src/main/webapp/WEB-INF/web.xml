@@ -9,35 +9,10 @@
         <param-value>true</param-value>
     </context-param>
 
-
-    <!--    <listener>
-            <listener-class>com.inno.servlet.AppContextListener</listener-class>
-        </listener>
-        <servlet>
-            <servlet-name>Mobiles</servlet-name>
-            <servlet-class>com.inno.servlet.AllMobilesServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>Mobiles</servlet-name>
-            <url-pattern>/allmobiles</url-pattern>
-        </servlet-mapping>
-        <servlet>
-            <servlet-name>AddMobile</servlet-name>
-            <servlet-class>com.inno.servlet.AddMobileServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>AddMobile</servlet-name>
-            <url-pattern>/addmobile</url-pattern>
-        </servlet-mapping>
-        <servlet>
-            <servlet-name>ShowMobile</servlet-name>
-            <servlet-class>com.inno.servlet.AddMobileServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>ShowMobile</servlet-name>
-            <url-pattern>/showmobile</url-pattern>
-        </servlet-mapping>-->
+    <resource-env-ref>
+        <resource-env-ref-name>jdbc/mobile</resource-env-ref-name>
+        <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+    </resource-env-ref>
 
     <servlet>
         <servlet-name>errorHandler</servlet-name>
@@ -59,15 +34,6 @@
         <location>/error.jsp</location>
     </error-page>
 
-       <!-- <filter>
-            <filter-name>logFilter</filter-name>
-            <filter-class>com.inno.servlet.LogFilter</filter-class>
-        </filter>
-        <filter-mapping>
-            <filter-name>logFilter</filter-name>
-            <url-pattern>/*</url-pattern>
-        </filter-mapping>-->
-
     <jsp-config>
         <taglib>
             <taglib-uri>dateTag</taglib-uri>
@@ -75,8 +41,4 @@
         </taglib>
     </jsp-config>
 
-    <resource-env-ref>
-        <resource-env-ref-name>jdbc/mobile</resource-env-ref-name>
-        <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
-    </resource-env-ref>
 </web-app>

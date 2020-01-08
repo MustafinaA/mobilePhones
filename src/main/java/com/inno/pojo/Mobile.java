@@ -9,6 +9,10 @@ public class Mobile {
   public Mobile() {
   }
 
+  public Mobile(Integer id){
+    this.id = id;
+  }
+
   public Mobile(Integer id, String model, Integer price, String manufacturer) {
     this.id = id;
     this.model = model;
