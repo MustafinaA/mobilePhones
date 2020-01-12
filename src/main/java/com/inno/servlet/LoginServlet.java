@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User findUser = new User(login, password);
+        User findUser = new User.UserBuilder(login, password).build();
         User user= (User) userDao.get(findUser);
 
         if (user==null) {

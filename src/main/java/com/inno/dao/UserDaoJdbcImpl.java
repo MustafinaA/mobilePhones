@@ -63,12 +63,11 @@ public class UserDaoJdbcImpl implements DataDao<User> {
             preparedStatement.setString(2, user.getPassword());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return new User(
-                            resultSet.getInt(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3),
-                            resultSet.getString(4),
-                            resultSet.getString(5));
+                    return new User.UserBuilder(user.getLogin(), user.getPassword()).
+                            withId(resultSet.getInt(1)).
+                            withEmail(resultSet.getString(3)).
+                            withPhone(resultSet.getString(4)).
+                            build();
                 }
             }
         } catch (SQLException e) {
