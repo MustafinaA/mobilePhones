@@ -25,16 +25,6 @@ public class LogFilter implements Filter {
         logger.info("init logFilter");
     }
 
-    /*@Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException,
-            ServletException {
-        HttpServletRequest req = (HttpServletRequest) servletRequest;
-        String uri = "Requested Uri::" + req.getRequestURI();
-        logger.info(uri);
-        String method = "Requested Method::" + req.getMethod();
-        logger.info(method);
-        filterChain.doFilter(servletRequest, servletResponse);
-    }*/
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException,
             ServletException {
