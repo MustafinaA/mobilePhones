@@ -10,7 +10,7 @@
 
     <properties>
         <logback.version>1.2.3</logback.version>
-        <postgresql.version>42.2.8</postgresql.version>
+        <postgresql.version>42.2.25</postgresql.version>
     </properties>
     <dependencies>
         <dependency>
